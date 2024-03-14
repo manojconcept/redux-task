@@ -16,6 +16,7 @@ const Main = ({postAll}) => {
             products={postAll}
             clickHandle={clickHandle}
         />
+        
     )
 }
 
