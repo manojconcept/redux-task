@@ -4,13 +4,13 @@ const Cards = ({ product,clickHandle }) => {
 
     const percentageAmout = (100 * product.discountPercentage) / product.price;
     const productPriceA = product.price - percentageAmout;
-    const count = product.count || 0
-    
+    const stockLeft = product.stock - product.count 
+    const count = stockLeft || product.stock
     return (
         <div className="col mb-5">
             <div className="card h-100">
                 <button type='button' style={{ border: "none", background: "none" }}>
-                    <div className="badge bg-dark text-white position-absolute" style={{ top: "0.5rem", right: "0.5rem" }}>Quantity : {count}</div>
+                    <div className="badge bg-dark text-white position-absolute" style={{ top: "0.5rem", right: "0.5rem" }}>Stock : {count}</div>
                     <img className="card-img-top" style={{ width: "100%", height: "200px" }} src={product.thumbnail} alt="..." />
                     <div className="card-body p-4">
                         <div className="text-center">

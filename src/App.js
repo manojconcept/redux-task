@@ -5,10 +5,13 @@ import { useSelector } from 'react-redux'
 import { selectAllPost } from './features/postSlice';
 import NavBar from './components/Navbar';
 import Main from './pages/Main';
-
+import Checkout from './pages/Checkout';
+import NoItemsAdded from './components/NoItemsAdded';
 
 const App = () => {
   const postAll = useSelector(selectAllPost);
+  const addedCart = postAll.filter(element => element.added !== undefined && element)
+ 
   return (
     <>
       <NavBar
@@ -22,7 +25,16 @@ const App = () => {
           />
         } />
 
-
+        <Route
+          path='/checkout'
+          element={
+            addedCart.length !== 0 ?
+            <Checkout
+            postAll={addedCart}
+            /> :
+            <NoItemsAdded/>
+          }
+        />
 
       </Routes>
 

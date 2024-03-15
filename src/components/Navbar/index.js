@@ -1,8 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 
 function NavBar({ postAll }) {
+    const navigate = useNavigate();
    const result = postAll.filter((ele) => ele.added !== undefined ? ele.added:0);
-   const totalCount = result.reduce((acum,current) => acum + current.added,0);
+   const totalCount = result.reduce((acum,current) => acum + current.added,0);    
     return (
         <>
             <nav style={{ position: "sticky", top: "0", zIndex: "9000" }} className="navbar navbar-expand-lg navbar navbar-dark bg-dark">
@@ -17,7 +18,7 @@ function NavBar({ postAll }) {
                             </li>
                             
                             <li className="nav-item ">
-                                <button onClick={""} type="button" className="nav-link" href="#"><i className="bi bi-basket"></i><span className="badge badge-light">{totalCount
+                                <button onClick={()=>navigate('/checkout')} type="button" className="nav-link" href="#"><i className="bi bi-basket"></i><span className="badge badge-light">{totalCount
                                 }</span></button>
                             </li>
                         </ul>
