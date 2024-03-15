@@ -118,9 +118,12 @@ const postSlice = createSlice(
                     if (action.payload.selectedVal !== 0) {
                         state.products[selDat] = { ...state.products[selDat], count: parseInt(action.payload.selectedVal) }
                     }
+                    
+                    if(action.payload.selectedVal === 0){
+                        delete state.products[selDat].count
+                        delete state.products[selDat].added
+                    }
 
-                    delete state.products[selDat].count
-                    delete state.products[selDat].added
                 }
             },
             resetAll: (state) => state
