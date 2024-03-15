@@ -2,12 +2,12 @@ import React from 'react'
 
 const Dropdown = ({count, stock, handleClick,id }) => { // socket
     let store = []
-    for (let i = 0; i <= stock; i++) {
+    for (let i = 1; i <= stock; i++) {
         store.push(i)
     }
     return (
         <select value={count} onChange={(e) => handleClick(e,id)}>
-            <option value='' disable>please select</option>
+            <option value={0} disable>Remove Item</option>
             {
                 store.map((ele, ind) => <option key={ind} value={ele}>{ele}</option>)
             }

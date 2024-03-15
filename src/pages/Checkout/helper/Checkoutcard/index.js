@@ -1,15 +1,20 @@
 import React from 'react'
 import Rating from '@mui/material/Rating';
 import Dropdown from '../../../../components/Dropdown';
-
+import {useDispatch} from 'react-redux'
+import { addProduct } from '../../../../features/postSlice';
 
 const CheckoutCard = ({ postAll }) => {
+    const dispatch = useDispatch();
 
     const handleClick = (e, id) => {
-        console.log(e.target.value)
-        console.log(id)
+        const data = {
+            selectedVal : e.target.value,
+            id
+        }
+        dispatch(addProduct(data))
+        
     }
-    
     return (
         <>
             <div className="container mt-2 mb-1" >

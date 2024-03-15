@@ -11,7 +11,7 @@ import NoItemsAdded from './components/NoItemsAdded';
 const App = () => {
   const postAll = useSelector(selectAllPost);
   const addedCart = postAll.filter(element => element.added !== undefined && element)
- 
+  console.log(postAll)
   return (
     <>
       <NavBar

@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { isObject } from 'lodash'
 
 
 const initialState = {
@@ -103,20 +104,26 @@ const postSlice = createSlice(
         reducers: {
             //To add products
             //>>>Actions<<
-            addProduct: (state,action) => {
-                const selDat = state.products.findIndex(data=>data.id === action.payload)
-                if(state.products[selDat].count === undefined){
-                    state.products[selDat] = {...state.products[selDat],count:1,added:1}
-                }else{
-                    state.products[selDat] = {...state.products[selDat],count:state.products[selDat].count+=1}
+            addProduct: (state, action) => {
+                const isObjectF = isObject(action.payload); // To check action.payload is {} object or not
+                if (isObjectF === false) {
+                    const selDat = state.products.findIndex(data => data.id === action.payload)
+                    if (state.products[selDat].count === undefined) {
+                        state.products[selDat] = { ...state.products[selDat], count: 1, added: 1 }
+                    } else {
+                        state.products[selDat] = { ...state.products[selDat], count: state.products[selDat].count += 1 }
+                    }
+                } else {
+                    const selDat = state.products.findIndex(data => data.id === action.payload.id)
+                    if (action.payload.selectedVal !== 0) {
+                        state.products[selDat] = { ...state.products[selDat], count: parseInt(action.payload.selectedVal) }
+                    }
+
+                    delete state.products[selDat].count
+                    delete state.products[selDat].added
                 }
-            } ,
-
-
-            removeProduct : (state,action) => {
-
-            }
-
+            },
+            resetAll: (state) => state
         }
 
     }
