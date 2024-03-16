@@ -7,7 +7,7 @@ const Dropdown = ({count, stock, handleClick,id }) => { // socket
     }
     return (
         <select value={count} onChange={(e) => handleClick(e,id)}>
-            <option value={0} disable>Remove Item</option>
+            <option value={0} disable>select item</option>
             {
                 store.map((ele, ind) => <option key={ind} value={ele}>{ele}</option>)
             }
